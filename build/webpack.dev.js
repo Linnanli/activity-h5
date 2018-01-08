@@ -3,7 +3,6 @@ var merge = require('webpack-merge');
 var webpack = require('webpack');
 var devServer = require('webpack-dev-server');
 var FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-var {WebPlugin} = require('web-webpack-plugin');
 //设置全局环境变量
 var env = require('../config/dev.env');
 process.env.NODE_ENV = JSON.parse(env.NODE_ENV);
@@ -25,7 +24,7 @@ var webpackDev = merge(webpackCommon,{
         inline:true,
         hot:true,
         quiet: true,
-        open:config.isOpenBrowser,
+        open:config.open,
         host:config.host,
         port:config.port,
         overlay:{ //当有编译错误或者警告的时候显示一个全屏overlay
@@ -39,14 +38,7 @@ var webpackDev = merge(webpackCommon,{
         }),
         new FriendlyErrorsWebpackPlugin(),//优化提示信息
         new webpack.HotModuleReplacementPlugin(),//热替换插件
-        new webpack.NamedModulesPlugin(),
-        new WebPlugin({
-            template:path.resolve(__dirname,'../index.html'),
-            filename:'index.html',
-            requires:['app']
-        })
+        new webpack.NamedModulesPlugin()
     ]
 });
 module.exports = webpackDev;
-// console.log(webpackDev);
-// devServer(webpackDev);
