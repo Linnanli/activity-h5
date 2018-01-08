@@ -50,14 +50,20 @@ module.exports = {
         rules:[
             {
                 test:/\.hbs$/,
-                loader:'handlebars-loader'
+                loader:'handlebars-loader',
+                options:{
+                    exclude: '/node_modules/',
+                    helperDirs:path.resolve(__dirname,'../src/helpers'),
+                    // inlineRequires: /^((?!http|https).)*(images|media|file)((?!http|https).)*$/,
+                    inlineRequires:/\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                }
             },
             {
                 test:/\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 loader:'url-loader',
                 options:{
-                    minimize:1024*30,
-                    name:path.join('static','img/[name].[hash:7].[ext]')
+                    limit: 1024*10,
+                    name:path.join(prodCfg.assetsSubDirectory,'img/[name].[hash:7].[ext]')
                 }
             },{
                 test:/\.html$/,

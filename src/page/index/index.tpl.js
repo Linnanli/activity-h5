@@ -1,7 +1,8 @@
 var compilerTpl = require('./index.hbs');
+// var miao = requi;
 module.exports = compilerTpl({
-  title:'title首页',
-  head: 'login head',
-  body:'login body(点我)',
-  footer:'login footer'
+  title:'index首页',
+  head: 'index head',
+  body:'点击图片显示弹窗,点击jump跳转页面',
+  footer:'index footer',
 })

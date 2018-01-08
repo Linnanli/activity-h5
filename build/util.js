@@ -49,12 +49,13 @@ var util = {
         var entry = options.entry || {},
             filename = '',
             template = '',
-            chunks = [],
+            chunks,
             basePath = '',
             HTMLPlugins = [];
 
         for (var name in entry) {
             if (entry.hasOwnProperty(name)) {
+                chunks = [];
                 basePath = path.parse(entry[name]).dir;
                 //判断文件名称
                 if (typeof options.filename === 'function') {

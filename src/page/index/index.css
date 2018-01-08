@@ -4,21 +4,21 @@ html,body{
     padding: 0;
     margin: 0;
 }
-.login-wrap{
+.index-wrap{
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
 }
-.login-head,.login-body,.login-footer{
+.index-head,.index-body,.index-footer{
     width: 100%;
     text-align: center;
     border: 1px solid #000;
     box-sizing: border-box;
 }
-.login-head,.login-footer{
+.index-head,.index-footer{
     height: 50px;
 }
-.login-body{
+.index-body{
     flex-grow: 1;
 }

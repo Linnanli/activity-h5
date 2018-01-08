@@ -61,3 +61,7 @@ new webpack.optimize.CommonsChunkPlugin({
 #多页架构
 
 [地址](https://segmentfault.com/a/1190000007126268)
+
+# handlebars-loader 使用方法
+
+[地址](http://debugrun.weweapp.com/a/F7Jh6Sy.html)

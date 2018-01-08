@@ -1,0 +1,1 @@
+{"source":"webpackJsonp([2],{FJzr:function(n,c){},w2jM:function(n,c,o){o(\"FJzr\")}},[\"w2jM\"]);","map":"{\"version\":3,\"sources\":[\"D:\\\\Documents\\\\GitHub\\\\initial-webpack\\\\src\\\\page\\\\home\\\\index.js\"],\"names\":[\"__webpack_require__\"],\"mappings\":\"4DAAAA,EAAA\",\"sourcesContent\":[\"require('./index.css');\\r\\nfunction index(){\\r\\n    \\r\\n}\"]}"}

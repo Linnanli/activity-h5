@@ -1,10 +1,12 @@
-require('./login.css')
-
-function Login(){
-    var ele = document.getElementById('loginBody');
+require('./index.css');
+var alert = require('component/alert');
+console.log(alert);
+function index(){
+    var ele = document.getElementById('indexBody');
     ele.onclick = function(){
-        this.innerText = '触发click';
+        // this.innerText = '触发click';
+        alert.show('弹出alert');
     }
 }
 
-Login();
+index();
