@@ -65,3 +65,9 @@ new webpack.optimize.CommonsChunkPlugin({
 # handlebars-loader 使用方法
 
 [地址](http://debugrun.weweapp.com/a/F7Jh6Sy.html)
+
+#关于使用webpack.ProvidePlugin注册的脚本
+
+如果在入口文件中调用 zepto的方法,那么他会被打包到vendor中,
+
+如果是在异步加载的脚本中调用,那么zepto会被打包到异步脚本中.(尽量不要让多个异步模块依赖类库文件)

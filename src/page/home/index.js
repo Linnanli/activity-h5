@@ -1,4 +1,5 @@
-require('./index.css');
+// require('./index.css');
+import './index.css';
 function index(){
     
 }

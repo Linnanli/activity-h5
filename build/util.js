@@ -65,8 +65,6 @@ var util = {
                 } else {
                     filename = 'index.html';
                 }
-                if (/\.html$/.test(filename) === false)
-                    throw new Error('not a template file');
 
                 if (typeof options.template === 'function') {
                     template = options.template.call(name,name,basePath);

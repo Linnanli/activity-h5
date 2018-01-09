@@ -1,5 +1,7 @@
-var compileTpl = require('./alert.hbs');
-require('./alert.css');
+// var compileTpl = require('./alert.hbs');
+// require('./alert.css');
+import compileTpl from './alert.hbs'
+import './alert.css';
 
 var tpl = compileTpl({
     headText:'head',
@@ -7,7 +9,7 @@ var tpl = compileTpl({
     confirmButName:'确认'
 });
 
-module.exports = {
+export default  {
     show:function(text){
         var _this=this;
         if(!this.ele){
