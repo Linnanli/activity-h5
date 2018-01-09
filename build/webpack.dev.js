@@ -1,7 +1,6 @@
 var path = require('path');
 var merge = require('webpack-merge');
 var webpack = require('webpack');
-var devServer = require('webpack-dev-server');
 var FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 //设置全局环境变量
 var env = require('../config/dev.env');
@@ -10,6 +9,8 @@ process.env.NODE_ENV = JSON.parse(env.NODE_ENV);
 var webpackCommon = require('./webpack.common');
 var styleCfg = require('./style.cfg');
 var config = require('../config').dev;
+//加载mock配置
+var mockData = require('../mock');
 
 var webpackDev = merge(webpackCommon,{
     module:{
@@ -30,7 +31,8 @@ var webpackDev = merge(webpackCommon,{
         overlay:{ //当有编译错误或者警告的时候显示一个全屏overlay
             errors:true,
             warnings:true,
-        }
+        },
+        before:mockData
     },
     plugins:[
         new webpack.DefinePlugin({
