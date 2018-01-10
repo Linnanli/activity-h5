@@ -71,3 +71,13 @@ new webpack.optimize.CommonsChunkPlugin({
 如果在入口文件中调用 zepto的方法,那么他会被打包到vendor中,
 
 如果是在异步加载的脚本中调用,那么zepto会被打包到异步脚本中.(尽量不要让多个异步模块依赖类库文件)
+
+#VueJS 开发常见问题集锦 (抽离css样式 blog,polyfill和transform-runtime)
+
+异步加载组件时，会产生 polyfill 代码冗余
+
+[地址](https://juejin.im/entry/591aa6ab44d904006c7b0938)
+
+# webpack 可视化工具
+
+[地址](http://blog.csdn.net/qq_16559905/article/details/78551719)

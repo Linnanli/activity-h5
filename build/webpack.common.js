@@ -11,19 +11,23 @@ var prodCfg = config.build;
 //生成入口脚本地址
 var entryCfg = util.generateEntry({
     pageFile:path.resolve(__dirname,`../src/${config.multiPageDir}`),//page 目录的地址
-    filename:'index.js'//各个页面入口文件的名称
+    filename:'index.js',//各个页面入口文件的名称
+    // unshift:function(){//将polyfill挂载到全局环境下
+    //     return 'babel-polyfill';
+    // }
 });
+console.log(entryCfg);
 //生成HTML插件配置
 var HTMLPlugin = util.generateHTMLPlugin({
     entry:entryCfg,
-    filename:function(name,basePath){
+    filename:function(name){
         //如果需要后端模板引擎渲染,可以将模板文件存放到指定的文件夹中
         // filename: `../../view/frontend/${page}.php`, // 通过控制相对路径来确定模板的根目录
         return `page/${name}.html`;
     },
-    template:function(name,basePath){
+    template:function(name){
         //限制模板文件为inde.tpl.js
-        return path.resolve(__dirname,`${basePath}/index.tpl.js`);
+        return path.resolve(__dirname,`../src/${config.multiPageDir}/${name}/index.tpl.js`);
     },
     dependChunks:['manifest','vendor']
 });

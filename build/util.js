@@ -1,7 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-
+var config = require('../config');
 //判断是否存在目录
 var util = {
     fsExistsAccess: function (path) {
@@ -26,7 +26,9 @@ var util = {
 
         if (isExists) {
             var pageFile = fs.readdirSync(pagePath),
-                filename = '';
+                filename = '',
+                entryStr = '',
+                unShiftEntryStr = '';
 
             pageFile.forEach(function (name, index) {
                 if (typeof options.filename === 'function') {
@@ -36,10 +38,18 @@ var util = {
                 } else {
                     filename = 'index.js';
                 }
-                if (/\.js$/.test(filename) === false)
-                    throw new Error('not a script file');
 
-                entryPath[name] = path.resolve(__dirname,`../src/page/${name}/${filename}`);
+                entryStr = path.resolve(__dirname,`../src/${config.multiPageDir}/${name}/${filename}`);
+                if(typeof options.unshift === 'function'){
+                    entryPath[name] = [entryStr];
+                    unShiftEntryStr = options.unshift(name);
+                    if(typeof  unShiftEntryStr === 'string'){
+                        entryPath[name].unshift(unShiftEntryStr);
+                    }             
+                }else{
+                    entryPath[name] = entryStr;
+                }
+
             });
         }
 
@@ -50,16 +60,16 @@ var util = {
             filename = '',
             template = '',
             chunks,
-            basePath = '',
+            // basePath = '',
             HTMLPlugins = [];
 
         for (var name in entry) {
             if (entry.hasOwnProperty(name)) {
                 chunks = [];
-                basePath = path.parse(entry[name]).dir;
+                // basePath = path.parse(entry[name]).dir;
                 //判断文件名称
                 if (typeof options.filename === 'function') {
-                    filename = options.filename.call(name,name,basePath);
+                    filename = options.filename.call(name,name);
                 } else if (typeof options.filename === 'string') {
                     filename = options.filename;
                 } else {
@@ -67,7 +77,7 @@ var util = {
                 }
 
                 if (typeof options.template === 'function') {
-                    template = options.template.call(name,name,basePath);
+                    template = options.template.call(name,name);
                 } else if (typeof options.template === 'string') {
                     template = options.template;
                 } else {
@@ -90,6 +100,15 @@ var util = {
         }
 
         return HTMLPlugins;
+    },
+    //提取state.json文件
+    getStateJSON(){
+        return function () {
+            this.plugin('done', function (statsData) {
+                const stats = statsData.toJson();
+                fs.writeFileSync(path.join(__dirname, '../stats.json'), JSON.stringify(stats));
+            });
+        }
     }
 };
 
