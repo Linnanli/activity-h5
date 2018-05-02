@@ -1,36 +1,17 @@
 const path = require('path');
-var webpack = require('webpack');
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 //加载配置文件
-var util= require('../build/util');
-var config = require('../config');
-var devCfg = config.dev;
-var prodCfg = config.build;
+const util= require('../build/util');
+const config = require('../config');
+const devCfg = config.dev;
+const prodCfg = config.build;
 
-//生成入口脚本地址
-var entryCfg = util.generateEntry({
-    pageFile:path.resolve(__dirname,`../src/${config.multiPageDir}`),//page 目录的地址
-    filename:'index.js',//各个页面入口文件的名称
-    // unshift:function(){//将polyfill挂载到全局环境下
-    //     return 'babel-polyfill';
-    // }
-});
-console.log(entryCfg);
-//生成HTML插件配置
-var HTMLPlugin = util.generateHTMLPlugin({
-    entry:entryCfg,
-    filename:function(name){
-        //如果需要后端模板引擎渲染,可以将模板文件存放到指定的文件夹中
-        // filename: `../../view/frontend/${page}.php`, // 通过控制相对路径来确定模板的根目录
-        return `page/${name}.html`;
-    },
-    template:function(name){
-        //限制模板文件为inde.tpl.js
-        return path.resolve(__dirname,`../src/${config.multiPageDir}/${name}/index.tpl.js`);
-    },
-    dependChunks:['manifest','vendor']
-});
+const page = require('./webpack.page.conf');
+const entryCfg = page.getEntryList();
+const htmlPluginCfg = page.getHTMLPlugin(process.env.NODE_ENV === 'development'?true:false);
+const styleCfg = require('./style.cfg');
 
 module.exports = {
     context:path.resolve(__dirname,'../'),
@@ -47,25 +28,17 @@ module.exports = {
         extensions:['.js','.json'],
         alias:{
             '@':path.resolve(__dirname,'../src'),
-            'component':path.resolve(__dirname,'../src/component')
+            'component':path.resolve(__dirname,'../src/component'),
+            'common': path.resolve(__dirname,'../src/common')
         }
     },
     module:{
         rules:[
+            ...styleCfg.cssLoader,
             {
                 test:/\.js$/,
                 include:path.resolve(__dirname,'../src'),
                 loader:'babel-loader'
-            },
-            {
-                test:/\.hbs$/,
-                loader:'handlebars-loader',
-                options:{
-                    exclude: '/node_modules/',
-                    helperDirs:path.resolve(__dirname,'../src/helpers'),
-                    // inlineRequires: /^((?!http|https).)*(images|media|file)((?!http|https).)*$/,
-                    inlineRequires:/\.(png|jpe?g|gif|svg)(\?.*)?$/,
-                }
             },
             {
                 test:/\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -77,6 +50,10 @@ module.exports = {
             },{
                 test:/\.html$/,
                 loader:'html-loader'
+            },{
+                test: /\.(ejs|tpl)$/,
+                exclude:/node_modules/,
+                loader:'ejs-loader'
             },{
                 test:require.resolve('zepto'),
                 //exports-loader向文件添加导出语句 module.exports = window.zepto
@@ -91,6 +68,6 @@ module.exports = {
         new webpack.ProvidePlugin({
             '$':'zepto'
         }),
-        ...HTMLPlugin
+        ...htmlPluginCfg
     ]
 };

@@ -24,6 +24,6 @@ var config = {
     }
 };
 //指定浏览器打开url地址
-config.dev.open = `http://${config.dev.host}:${config.dev.port}/${config.multiPageDir}`;
+config.dev.open = true;
 
 module.exports = config;

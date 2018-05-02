@@ -14,16 +14,16 @@ process.env.NODE_ENV = JSON.parse(env.NODE_ENV);
 var config = require('../config').build;
 //加载配置文件
 var webpackCommon = require('./webpack.common');
-var styleCfg = require('./style.cfg');
+// var styleCfg = require('./style.cfg');
 
 module.exports = merge(webpackCommon, {
     output: {
         filename: path.join(config.assetsSubDirectory, 'js/[name].[chunkhash:5].js'),
         chunkFilename: path.join(config.assetsSubDirectory, 'js/[name].[chunkhash:5].js')
     },
-    module: {
-        rules: styleCfg.cssLoader
-    },
+    // module: {
+    //     rules: styleCfg.cssLoader
+    // },
     devtool: config.devtool,
     plugins: [
         new webpack.DefinePlugin({
@@ -84,8 +84,6 @@ module.exports = merge(webpackCommon, {
             analyzerHost: '127.0.0.1',
             analyzerPort: 8888,
             openAnalyzer: true
-        }),
-        //提取state.json文件
-        util.getStateJSON()
+        })
     ]
 });

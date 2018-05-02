@@ -2,114 +2,110 @@ var fs = require('fs');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var config = require('../config');
+
+
 //判断是否存在目录
-var util = {
-    fsExistsAccess: function (path) {
-        try {
-            fs.accessSync(path, fs.F_OK);
-        } catch (e) {
-            return false;
-        }
-        return true;
-    },
-    /**
-     * 生成多页面entry参数
-     * 
-     * options{object}
-     * options.pagePath{string} 多页面入口地址
-     * options.filename{function|string} 设置多页面入口地址
-     */
-    generateEntry: function (options) {
-        var pagePath = path.resolve(__dirname, options.pageFile),
-            isExists = this.fsExistsAccess(pagePath),
-            entryPath = {};
+function fsExistsAccess(path) {
+    try {
+        fs.accessSync(path, fs.F_OK);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
 
-        if (isExists) {
-            var pageFile = fs.readdirSync(pagePath),
-                filename = '',
-                entryStr = '',
-                unShiftEntryStr = '';
+//判断entry配置是否是js入口文件
+function isJsEntryFile(entry, suffix = ['js']) {
+    let reg = new RegExp(`\.(${suffix.join('|')})$`);
 
-            pageFile.forEach(function (name, index) {
-                if (typeof options.filename === 'function') {
-                    filename = options.filename.call(name, name);
-                } else if (typeof options.filename === 'string') {
-                    filename = options.filename;
-                } else {
-                    filename = 'index.js';
-                }
+    if (typeof entry === 'string') return reg.test(entry);
 
-                entryStr = path.resolve(__dirname,`../src/${config.multiPageDir}/${name}/${filename}`);
-                if(typeof options.unshift === 'function'){
-                    entryPath[name] = [entryStr];
-                    unShiftEntryStr = options.unshift(name);
-                    if(typeof  unShiftEntryStr === 'string'){
-                        entryPath[name].unshift(unShiftEntryStr);
-                    }             
-                }else{
-                    entryPath[name] = entryStr;
-                }
-
-            });
-        }
-
-        return entryPath;
-    },
-    generateHTMLPlugin: function (options) {
-        var entry = options.entry || {},
-            filename = '',
-            template = '',
-            chunks,
-            // basePath = '',
-            HTMLPlugins = [];
-
-        for (var name in entry) {
-            if (entry.hasOwnProperty(name)) {
-                chunks = [];
-                // basePath = path.parse(entry[name]).dir;
-                //判断文件名称
-                if (typeof options.filename === 'function') {
-                    filename = options.filename.call(name,name);
-                } else if (typeof options.filename === 'string') {
-                    filename = options.filename;
-                } else {
-                    filename = 'index.html';
-                }
-
-                if (typeof options.template === 'function') {
-                    template = options.template.call(name,name);
-                } else if (typeof options.template === 'string') {
-                    template = options.template;
-                } else {
-                    template = 'index.html';
-                }
-                
-                //添加依赖块
-                if(options.dependChunks){
-                    chunks = chunks.concat(options.dependChunks,name);
-                }else{
-                    chunks.push(name);
-                }
-                
-                HTMLPlugins.push(new HtmlWebpackPlugin({
-                    filename: filename,
-                    template:template,
-                    chunks: chunks
-                }));
-            }
-        }
-
-        return HTMLPlugins;
-    },
-    //提取state.json文件
-    getStateJSON(){
-        return function () {
-            this.plugin('done', function (statsData) {
-                const stats = statsData.toJson();
-                fs.writeFileSync(path.join(__dirname, '../stats.json'), JSON.stringify(stats));
-            });
+    if (entry instanceof Array) {
+        for (let index = 0; index < entry.length; index++) {
+            if (!reg.test(entry[index])) return false;
         }
     }
-};
 
-module.exports = util;
+    return true;
+}
+
+//生成各个入口配置
+exports.generateEntry = function  ({ pageDir, filename, insetBefore }) {
+    if (typeof pageDir !== 'string')
+        throw new Error('请传入目录绝对路径');
+
+    let pagePath = path.resolve(__dirname, pageDir),
+        isExists = fsExistsAccess(pageDir),
+        entryPath = {};
+
+    if (isExists) {
+        let pageFile = fs.readdirSync(pageDir),
+            finishFilename = '',
+            entryStr = '',
+            chunckName = '';
+
+        pageFile.forEach(function (name, index) {
+            if (typeof filename === 'function') {
+                finishFilename = filename.call(name, name);
+            } else if (typeof filename === 'string') {
+                finishFilename = filename;
+            } else {
+                finishFilename = 'index.js';
+            }
+
+            entryStr = path.join(pageDir, `${name}/${filename}`);
+
+            //向指定入口添加chunck,如: ['babel-polyfill','main.js']
+            if (typeof insetBefore === 'function') {
+                chunckName = insetBefore(name);
+                if (typeof chunckName === 'string') {
+                    entryPath[name] = [entryStr];
+                    entryPath[name].unshift(chunckName);
+                }
+            } else {
+                entryPath[name] = entryStr;
+            }
+
+        });
+    }
+
+    return entryPath;
+}
+
+//生成html plugin
+exports.generateHTMLPlugin = function ({ entryList = {}, filename, template }) {
+    let params,
+        finishFilename = '',
+        finishTemplate = '',
+        HTMLPlugins = [];
+
+    for (let name in entryList) {
+
+        if (!isJsEntryFile(entryList[name])) continue;
+        params = {};
+        //判断文件名称
+        if (typeof filename === 'function') {
+            finishFilename = filename.call(params, name);
+        } else if (typeof filename === 'string') {
+            finishFilename = filename;
+        } else {
+            finishFilename = 'index.html';
+        }
+
+        if (typeof template === 'function') {
+            finishTemplate = template.call(params, name);
+        } else if (typeof template === 'string') {
+            finishTemplate = template;
+        } else {
+            finishTemplate = 'index.html';
+        }
+
+        params.filename = finishFilename;
+        params.template = finishTemplate;
+        params.inject = false;
+
+        HTMLPlugins.push(params);
+    }
+
+    return HTMLPlugins;
+}
