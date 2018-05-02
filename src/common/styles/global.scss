@@ -1,4 +1,1 @@
-//px转rem函数
-@function rem($px, $base-font-size: 100) {
-    @return ($px / $base-font-size) + rem;
-}
+@import './_function.scss';
