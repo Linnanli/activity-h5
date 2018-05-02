@@ -2,7 +2,7 @@ const util = require('./util')
 const path = require('path')
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-// const dependentChunck = require('../lib/outer-script')
+const vendorList = require('../lib/vendor')
 // const inlineScript = require('../lib/inline-script')
 
 //生成入口文件配置
@@ -11,7 +11,7 @@ let entryList = util.generateEntry({
     filename: 'index.js'
 });
 entryList.app = './src/main.js';
-// entryList = merge(entryList, dependentChunck);
+entryList = merge(entryList, vendorList);
 
 //生成HTML插件配置
 let HTMLPlugin = util.generateHTMLPlugin({

@@ -54,20 +54,10 @@ module.exports = {
                 test: /\.(ejs|tpl)$/,
                 exclude:/node_modules/,
                 loader:'ejs-loader'
-            },{
-                test:require.resolve('zepto'),
-                //exports-loader向文件添加导出语句 module.exports = window.zepto
-                //在全局上下文执行一次脚本,等于将zepto挂载到window对象下面
-                // use:['exports-loader?window.zepto!script-loader']
-                use: ['exports-loader?window.Zepto','script-loader']
             }
         ]
     },
     plugins:[
-        //自动加载模块,不需要import后再使用
-        new webpack.ProvidePlugin({
-            '$':'zepto'
-        }),
         ...htmlPluginCfg
     ]
 };

@@ -20,7 +20,7 @@ var config = {
         devtool:'eval-source-map',
         
         host:'localhost',
-        port:8088
+        port:8089
     }
 };
 //指定浏览器打开url地址

@@ -62,22 +62,22 @@ module.exports = merge(webpackCommon, {
             filename: path.join(config.assetsSubDirectory, 'css/[name].[contenthash:5].css'),
             allChunks: true
         }),
-        new webpack.optimize.CommonsChunkPlugin({//提取框架/类库脚本
-            name: 'vendor',
-            minChunks: function (module, count) {
-                return (
-                    module.resource &&
-                    /\.js$/.test(module.resource) &&
-                    module.resource.indexOf('css-loader') === -1 &&//去除被打包进来的css-loader
-                    module.resource.indexOf(
-                        path.join(__dirname, '../node_modules')
-                    ) === 0
-                )
-            }
-        }),
+        // new webpack.optimize.CommonsChunkPlugin({//提取框架/类库脚本
+        //     name: 'vendor',
+        //     minChunks: function (module, count) {
+        //         return (
+        //             module.resource &&
+        //             /\.js$/.test(module.resource) &&
+        //             module.resource.indexOf('css-loader') === -1 &&//去除被打包进来的css-loader
+        //             module.resource.indexOf(
+        //                 path.join(__dirname, '../node_modules')
+        //             ) === 0
+        //         )
+        //     }
+        // }),
         new webpack.optimize.CommonsChunkPlugin({//提取webpack运行时脚本
             name: 'manifest',
-            minChunks: 2// Infinity
+            minChunks: Infinity
         }),
         new webpack.optimize.ModuleConcatenationPlugin(),//作用域提升 (scope hoisting)
         new BundleAnalyzerPlugin({
