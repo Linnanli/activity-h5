@@ -13,6 +13,14 @@ const entryCfg = page.getEntryList();
 const htmlPluginCfg = page.getHTMLPlugin(process.env.NODE_ENV === 'development'?true:false);
 const styleCfg = require('./style.cfg');
 
+function assetsPath(_path) {
+    const assetsSubDirectory = process.env.NODE_ENV === 'production'
+        ? config.build.assetsSubDirectory
+        : config.dev.assetsSubDirectory
+
+    return path.posix.join(assetsSubDirectory, _path)
+}
+
 module.exports = {
     context:path.resolve(__dirname,'../'),
     entry:entryCfg,
@@ -21,15 +29,16 @@ module.exports = {
         filename: path.join(prodCfg.assetsSubDirectory, 'js/[name].js'),
         chunkFilename: path.join(prodCfg.assetsSubDirectory, 'js/[name].js'),
         publicPath:process.env.NODE_ENV === 'production'
-        ?devCfg.assetsPublicPath
-        :prodCfg.assetsPublicPath
+            ? prodCfg.assetsPublicPath
+            : devCfg.assetsPublicPath
     },
     resolve:{
         extensions:['.js','.json'],
         alias:{
             '@':path.resolve(__dirname,'../src'),
             'component':path.resolve(__dirname,'../src/component'),
-            'common': path.resolve(__dirname,'../src/common')
+            'common': path.resolve(__dirname,'../src/common'),
+            'util': path.resolve(__dirname, '../src/util')
         }
     },
     module:{
@@ -44,8 +53,8 @@ module.exports = {
                 test:/\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 loader:'url-loader',
                 options:{
-                    limit: 1024*10,
-                    name:path.join(prodCfg.assetsSubDirectory,'img/[name].[hash:7].[ext]')
+                    limit: 1024 * 10,
+                    name: assetsPath('img/[name].[hash:7].[ext]')
                 }
             },{
                 test:/\.html$/,

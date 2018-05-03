@@ -1,9 +1,9 @@
-var fs = require('fs');
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var config = require('../config');
-
-
+const fs = require('fs');
+const UglifyJS = require('uglify-es')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const config = require('../config');
+// console.log(config)
 //判断是否存在目录
 function fsExistsAccess(path) {
     try {
@@ -108,4 +108,23 @@ exports.generateHTMLPlugin = function ({ entryList = {}, filename, template }) {
     }
 
     return HTMLPlugins;
+}
+
+exports.loadMinified = function (filePath, isUglifyJS) {
+  const code = fs.readFileSync(filePath, 'utf-8');
+  if (isUglifyJS) {
+    const result = UglifyJS.minify(code)
+    if (result.error) return ''
+    return result.code
+  }
+
+  return code;
+}
+
+exports.assetsPath = function (_path) {
+    const assetsSubDirectory = process.env.NODE_ENV === 'production'
+        ? config.build.assetsSubDirectory
+        : config.dev.assetsSubDirectory
+
+    return path.posix.join(assetsSubDirectory, _path)
 }

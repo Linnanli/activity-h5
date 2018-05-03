@@ -1,0 +1,84 @@
+body{
+    background-color: #F7F7F7;
+    font-family: $fontfamily;
+}
+.produc-item + .produc-item{
+    border-top: 1px solid #E7E7E7;
+}
+.container{
+    width: 100%;
+    margin: 0 auto;
+    
+    .head{
+        width: 100%;
+        height: rem(132);
+        background-color: rebeccapurple;
+        @include bg('./img/activity-promotion3-banner.png');
+    }
+
+    .body{
+        width: 100%;
+        background-color: #fff;
+        margin-top: rem(10);
+    }
+    /*================= 产品标题 ==================*/
+    .body-title{
+        width: 100%;
+        margin: rem(16) 0 rem(7) 0;
+    }
+    .title-text{
+        width: rem(95);
+        height: rem(15);
+        margin: 0 auto;
+        @include bg('./img/hot-title.png');
+    }
+
+    /*================= 产品列表 ==================*/
+    .produc-list{
+        padding: 0 rem(17) 0 rem(15) ;
+    }
+    .produc-item{
+        width: 100%;
+        padding: rem(22) 0 rem(20) 0;
+    }
+    .produc-top{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+    }
+    .produc-img-box{
+        width: rem(37);
+        height: rem(37);
+        border-radius: rem(9);
+        overflow: hidden;
+        font-size: 0;
+        @include bg('../../common/img/pdicon.png');
+
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .produc-desc{
+        margin-left: rem(11);
+    }
+    .produc-name{
+        color: #424251;
+        font-size: rem(15);
+        margin-top: rem(3);
+    }
+    .produc-person{
+        color: #FF5240;
+        font-size: rem(12);
+        margin-top: rem(7);
+    }
+    .produc-bottom{
+        margin-top: rem(23);
+        color: #909298;
+        font-size: rem(11);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+}

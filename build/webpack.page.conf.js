@@ -3,7 +3,7 @@ const path = require('path')
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const vendorList = require('../lib/vendor')
-// const inlineScript = require('../lib/inline-script')
+const inlineScript = require('../lib/inline-script')
 
 //生成入口文件配置
 let entryList = util.generateEntry({
@@ -42,15 +42,16 @@ exports.getHTMLPlugin = function (isDev) {
     let HTMLPlugins = [];
 
     HTMLPlugin.forEach((item, index) => {
-        Object.assign(item, {});
+        Object.assign(item, inlineScript);
         if (isDev) {
             HTMLPlugins.push(new HtmlWebpackPlugin(item));
         } else {
-            item.minify = {
-                removeComments: true,
-                collapseWhitespace: true,
-                removeAttributeQuotes: true
-            };
+            item.minify = false;
+            // item.minify = {
+            //     removeComments: true,
+            //     collapseWhitespace: true,
+            //     removeAttributeQuotes: true
+            // };
             item.chunksSortMode = 'dependency';
             HTMLPlugins.push(new HtmlWebpackPlugin(item));
         }

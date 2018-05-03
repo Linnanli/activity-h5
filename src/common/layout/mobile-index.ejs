@@ -12,9 +12,14 @@
     <title>
         <%=title%>
     </title>
+    <%= styles %>
+    <script type="text/javascript"><%= flexible %></script>
+    <script type="text/javascript">
+        window.global = <%= typeof  global !== null?global:'{}'%>;
+    </script>
 </head>
 
-<body>
+<body style="font-size: 16px;">
     <noscript style="background-color: red;">请解除javascript禁用,或者更换浏览器。</noscript>
     <%= container %>
         <%= script%>

@@ -2,11 +2,15 @@ let content = require('common/layout/index.ejs')
 let script = require('common/layout/script.ejs')
 let styles = require('common/layout/styles.ejs')
 
+let container = require('./template.html')
+
 module.exports =  ({ htmlWebpackPlugin: { options, files } }) => {
+    let { flexible } = options;
     return content({
         title:'index',
+        // flexible: flexible,
         styles: styles({ linkList: files.chunks.app.css }),
-        container:'<div>container</div>',
-        script: script({ chunks: ['manifest','zepto', 'login'], scriptList: files.chunks }),
+        container: container,
+        script: script({ chunks: ['manifest','login'], scriptList: files.chunks }),
     });
 }

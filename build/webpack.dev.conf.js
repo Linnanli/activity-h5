@@ -11,9 +11,6 @@ var webpackCommon = require('./webpack.common');
 var config = require('../config').dev;
 
 var webpackDev = merge(webpackCommon,{
-    // module:{
-    //     rules:styleCfg.cssLoader
-    // },
     devtool:config.devtool,
     devServer:{
         inline:true,
