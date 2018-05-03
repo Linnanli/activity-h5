@@ -16,18 +16,10 @@ const prodCfg = config.build;
 //加载配置文件
 const webpackCommon = require('./webpack.common');
 
-
-function assetsPath(_path) {
-    const assetsSubDirectory = process.env.NODE_ENV === 'production'
-        ? config.build.assetsSubDirectory
-        : config.dev.assetsSubDirectory;
-    return path.posix.join(assetsSubDirectory, _path);
-}
-
 module.exports = merge(webpackCommon, {
     output: {
-        filename: assetsPath('js/[name].[chunkhash:5].js'),
-        chunkFilename: assetsPath('js/[name].[chunkhash:5].js')
+        filename: util.assetsPath('js/[name].[chunkhash:5].js'),
+        chunkFilename: util.assetsPath('js/[name].[chunkhash:5].js')
     },
     devtool: prodCfg.devtool,
     plugins: [
@@ -64,7 +56,7 @@ module.exports = merge(webpackCommon, {
             }
         }),
         new ExtractTextPlugin({
-            filename: assetsPath('css/[name].[contenthash:5].css'),
+            filename: util.assetsPath('css/[name].[contenthash:5].css'),
             allChunks: true
         }),
         // new webpack.optimize.CommonsChunkPlugin({//提取框架/类库脚本

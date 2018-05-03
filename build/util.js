@@ -3,7 +3,7 @@ const UglifyJS = require('uglify-es')
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = require('../config');
-// console.log(config)
+
 //判断是否存在目录
 function fsExistsAccess(path) {
     try {

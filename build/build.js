@@ -8,8 +8,7 @@ const webpack = require('webpack')
 const env = require('../config/prod.env');
 process.env.NODE_ENV = JSON.parse(env.NODE_ENV);
 
-const config = require('../config');
-const prodCfg = config.build;
+const prodCfg = require('../config').build;
 const webpackConfig = require('../build/webpack.pro.conf');
 
 const spinner = ora('生产文件构建中...').start();

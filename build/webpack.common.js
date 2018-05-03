@@ -13,13 +13,6 @@ const entryCfg = page.getEntryList();
 const htmlPluginCfg = page.getHTMLPlugin(process.env.NODE_ENV === 'development'?true:false);
 const styleCfg = require('./style.cfg');
 
-function assetsPath(_path) {
-    const assetsSubDirectory = process.env.NODE_ENV === 'production'
-        ? config.build.assetsSubDirectory
-        : config.dev.assetsSubDirectory
-
-    return path.posix.join(assetsSubDirectory, _path)
-}
 
 module.exports = {
     context:path.resolve(__dirname,'../'),
@@ -54,7 +47,7 @@ module.exports = {
                 loader:'url-loader',
                 options:{
                     limit: 1024 * 10,
-                    name: assetsPath('img/[name].[hash:7].[ext]')
+                    name: util.assetsPath('img/[name].[hash:7].[ext]')
                 }
             },{
                 test:/\.html$/,

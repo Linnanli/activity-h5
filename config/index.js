@@ -1,9 +1,7 @@
-var fs = require('fs');
-var path = require('path');
-var util= require('../build/util');
+const fs = require('fs');
+const path = require('path');
 
-
-var config = {
+const config = {
     multiPageDir:'page',
     build:{
         assetsRoot:path.resolve(__dirname,'../dist'),//生成资源根路径
@@ -19,7 +17,7 @@ var config = {
         //sourceMap
         devtool:'eval-source-map',
         
-        host:'192.168.1.40',
+        host:'localhost',
         port:8089
     }
 };
