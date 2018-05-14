@@ -18,7 +18,7 @@ var config = {
         //sourceMap
         devtool:'eval-source-map',
         https:false,
-        host:'169.254.154.26',
+        host:'localhost',
         port:8089
     }
 };

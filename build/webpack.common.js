@@ -53,6 +53,10 @@ module.exports = {
                 test: /\.(ejs|tpl)$/,
                 exclude:/node_modules/,
                 loader:'ejs-loader'
+            }, {
+                test: /\.text$/,
+                exclude: /node_modules/,
+                loader: 'inline-script-loader'
             }
         ]
     },
