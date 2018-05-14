@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% const chunckName = 'activity-promotion6';%>
+    <% const http = htmlWebpackPlugin.options.http;%>
+    <% const linkList = htmlWebpackPlugin.files.chunks[chunckName].css%>
+    <% const scriptList = htmlWebpackPlugin.files.chunks%>
+    <% const chunks = ['manifest',chunckName]%>
+    <%=require('html-loader!common/layout/mobile-meat.html')%>
+    <title>考拉记账</title>
+    <% for(var i = 0;i<linkList.length;i++){ %>
+        <link rel="stylesheet" href="<%=linkList[i]%>">
+    <% } %>
+    <%= '<script>'+ htmlWebpackPlugin.options.flexible +'</script>' %>
+    <script type="text/javascript">
+        window.global = { };
+    </script>
+</head>
+
+<body>
+    <%= require('html-loader!./template/container.html')%>
+
+    <script type="text/javascript" src="<%=http%>://apps.bdimg.com/libs/zepto/1.1.4/zepto.min.js"></script>
+    <% chunks.forEach(function(name,index){ %>
+    <% if(typeof scriptList[name] === 'object'){ %>
+        <script type="text/javascript" src="<%=scriptList[name].entry%>"></script>
+    <% } %>
+    <% }) %>
+</body>
+
+</html>

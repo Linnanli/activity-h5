@@ -50,12 +50,13 @@ a{
 	text-decoration: none;
 }
 /*============= 工具 =============*/
-.clearfix{
-	&::after,&::before{
-		content:"";
-   		display:table;
-	}
+.clearfix{*zoom:1;}
+.clearfix:before,.clearfix:after{
+    content:"";
+    display:table;
+    line-height:0;
+    visibility:hidden;
 }
 .clearfix:after{
-   clear:both;/*清除浮动*/
+    clear:both;
 }

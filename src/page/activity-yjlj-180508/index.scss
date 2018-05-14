@@ -1,0 +1,16 @@
+.container{
+    .mask{
+        @include mask();
+    }
+    .pop-box{
+        width: rem(266);
+        height: rem(305);
+        margin: rem(119) auto 0 auto;
+        @include bg('./img/activity-yjlj-180508-pop.png');
+    }
+    .start-btn{
+        width: rem(220);
+        height: rem(48);
+        margin: rem(256) auto 0 auto;
+    }
+}

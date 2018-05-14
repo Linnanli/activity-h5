@@ -1,10 +1,5 @@
 import 'common/styles/reset.scss';
 import './index.scss';
-import { getQueryString } from 'util'
-
-
-//获取url参数
-let userIp = getQueryString('userIp');
 
 let producList = {
     listEle:null,
@@ -14,16 +9,16 @@ let producList = {
         this.bindEvent();
         //开始请求
         $.ajax({
-            url:'/product/newDynamicList',
+            url:'../../product/list',
             type:'POST',
             data: {
-                // groupId: groupId,
-                userIp: userIp
+                groupId:window.global.groupId,
+                userIp:window.global.userIp
             },
-            success: ({ code, msg, data: {rows} })=>{
+            success: ({ code, msg, data})=>{
                 if (code === 1000000){
                     //产品列表
-                    this.generateList(rows);
+                    this.generateList(data);
                 }else{
                     alert(msg);
                 }
@@ -34,14 +29,14 @@ let producList = {
         });
     },
     bindEvent(){
-        this.listEle.on('click', '.produc-item', function () {
-            window.location.href = 'http://www.baidu.com?id=' + $(this).data('id');
+        this.listEle.on('click', '.produc-btn', function () {
+            window.location.href = '../../product/detail?productId='+ $(this).data('id') + '&groupId='+ window.global.groupId + '&tempId='+ window.global.tempId;
         });
     },
     generateList(data){
         let tpl = '';
         $.each(data, (index,item)=>{
-            tpl += `<div class="produc-item" data-id="${item.id}">
+            tpl += `<div class="produc-item">
                         <div class="produc-top">
                             <div class="produc-img-box">
                                 <img src="${item.logoUrl ? item.logoUrl:''}" />
@@ -50,12 +45,8 @@ let producList = {
                                 <div class="produc-name">${item.productName}</div>
                                 <div class="produc-person">已借${item.successCount}人</div>
                             </div>
-                        </div>
-                        <div class="produc-bottom">
-                            <span class="produc-info">最高额度 10万</span>
-                            <span class="produc-info">参考月息 0.01%</span>
-                            <span class="produc-info">期限范围 7-30日</span>
-                        </div>          
+                            <div class="produc-btn"  data-id="${item.id}">立即借钱</div>
+                        </div>        
                     </div>`;
         });
 

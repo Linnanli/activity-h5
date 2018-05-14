@@ -1,0 +1,103 @@
+body{
+    background-color: #F7F7F7;
+    font-family: $fontfamily;
+}
+
+.container{
+    width: 100%;
+    margin: 0 auto;
+    
+    .produc-head{
+        width: 100%;
+        height: rem(132);
+        background-color: rebeccapurple;
+        @include bg('./img/activity-promotion4-banner.png');
+    }
+
+    .produc-body{
+        width: 100%;
+    }
+    /*================= 轮播列表 ==================*/
+    .slider-box{
+        width: 100%;
+        height: 50px;
+        background-color: #fff;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        
+    }
+    .slider-left{
+        width: rem(31);
+        height: rem(31);
+        margin-left: rem(15);
+        @include bg('./img/activity-promotion4-slider-icon.png');
+        
+    }
+    .slider-right{
+        height: 50px;
+        flex-grow: 1;
+        margin-left: rem(7);
+        overflow: hidden;
+    }
+    .slider-item{
+        color: #424251;
+        height: 50px;
+        line-height: 50px;
+        font-size: rem(12);
+    }
+    /*================= 产品列表 ==================*/
+    .produc-list{
+        padding-top: rem(29);
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        background-color: #fff;
+        margin-top: rem(10);
+    }
+    .produc-item{
+        width: 50%;
+        display: flex;
+        flex-direction: row;
+        // justify-content: center;
+        align-items: center;
+        margin-bottom: rem(40);
+    }
+    .produc-img-box{
+        width: rem(47);
+        height: rem(47);
+        border-radius: rem(5);
+        overflow: hidden;
+        margin:0 rem(10) 0 rem(24);
+        @include bg('../../common/img/pdicon.png');
+
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .produc-name{
+        width: rem(86);
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        font-size: rem(14);
+        color: #424251;
+        margin-top: rem(3);
+    }
+    .produc-price{
+        font-size: rem(10);
+        color: #909298;
+        margin-top: rem(5);
+    }
+    .produc-person{
+        font-size: rem(10);
+        color: #FF5240;
+        margin-top: rem(5);
+
+        .footer{
+            color: #909298;
+        }
+    }
+}

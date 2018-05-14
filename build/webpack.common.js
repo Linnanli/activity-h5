@@ -10,7 +10,7 @@ const prodCfg = config.build;
 
 const page = require('./webpack.page.conf');
 const entryCfg = page.getEntryList();
-const htmlPluginCfg = page.getHTMLPlugin(process.env.NODE_ENV === 'development'?true:false);
+const htmlPluginCfg = page.getHTMLPlugin(process.env.NODE_ENV);
 const styleCfg = require('./style.cfg');
 
 
@@ -49,9 +49,6 @@ module.exports = {
                     limit: 1024 * 10,
                     name: util.assetsPath('img/[name].[hash:7].[ext]')
                 }
-            },{
-                test:/\.html$/,
-                loader:'html-loader'
             },{
                 test: /\.(ejs|tpl)$/,
                 exclude:/node_modules/,

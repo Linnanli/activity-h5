@@ -15,6 +15,7 @@ var webpackDev = merge(webpackCommon,{
     devServer:{
         inline:true,
         hot:true,
+        https: config.https,
         quiet: true,
         open:config.open,
         host:config.host,

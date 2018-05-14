@@ -4,14 +4,14 @@ const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const vendorList = require('../lib/vendor')
 const inlineScript = require('../lib/inline-script')
-
+const config = require('../config');
 //生成入口文件配置
 let entryList = util.generateEntry({
     pageDir: path.resolve(__dirname, `../src/page`),
     filename: 'index.js'
 });
 entryList.app = './src/main.js';
-entryList = merge(entryList, vendorList);
+// entryList = merge(entryList, vendorList);
 
 //生成HTML插件配置
 let HTMLPlugin = util.generateHTMLPlugin({
@@ -25,9 +25,11 @@ let HTMLPlugin = util.generateHTMLPlugin({
     },
     template: function (name) {
         if (name === 'app') {
-            return path.resolve(__dirname, `../src/html.js`);
+            return path.resolve(__dirname, `../src/index.ejs`);
+        } if (name === 'activity-promotion5') {
+            return path.resolve(__dirname, `../src/page/${name}/index.ejs`);
         } else {
-            return path.resolve(__dirname, `../src/page/${name}/html.js`);
+            return path.resolve(__dirname, `../src/page/${name}/index.ejs`);
         }
     }
 });
@@ -38,11 +40,19 @@ exports.getEntryList = function () {
 };
 
 //获取html plugin配置
-exports.getHTMLPlugin = function (isDev) {
+exports.getHTMLPlugin = function (env) {
     let HTMLPlugins = [];
-
+    let isDev = env === 'development';
     HTMLPlugin.forEach((item, index) => {
         Object.assign(item, inlineScript);
+        item.NODE_ENV = env;//传入环境变量
+        item.fundebugKey = config.fundebugKey;
+        //模板根据不同环境区分不同请求头
+        if (!isDev && !process.env.TEST_BUILD){
+            item.http = 'https';
+        } else if (isDev || process.env.TEST_BUILD){
+            item.http = 'http';
+        }
         if (isDev) {
             HTMLPlugins.push(new HtmlWebpackPlugin(item));
         } else {

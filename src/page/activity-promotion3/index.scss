@@ -45,6 +45,7 @@ body{
         width: 100%;
         display: flex;
         justify-content: flex-start;
+        position: relative;
     }
     .produc-img-box{
         width: rem(37);
@@ -72,13 +73,22 @@ body{
         font-size: rem(12);
         margin-top: rem(7);
     }
-    .produc-bottom{
-        margin-top: rem(23);
-        color: #909298;
-        font-size: rem(11);
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+    .produc-btn{
+        // border: rem(1) solid #FF5240;
+        width: rem(75);
+        height: rem(30);
+        line-height: rem(30);
+        text-align: center;
+        position: absolute;
+        right: 0;
+        top: rem(4);
+        // border-radius: rem(15);
+        color: #FF5240;
+        font-size: rem(12);
+        letter-spacing: rem(1);
+        text-indent: rem(1);
+        @include bg('./img/activity-promotion3-btn.png');
     }
+    
     
 }

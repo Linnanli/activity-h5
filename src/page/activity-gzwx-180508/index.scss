@@ -1,0 +1,56 @@
+body,html{
+    height: 100%;
+    background-color: #6974ea;
+}
+.container{
+    width: 100%;
+    height: rem(818);
+    @include bg('./img/activity-180508-bg.png');
+
+    .start-btn{
+        width: rem(298);
+        height: rem(78);
+        position: absolute;
+        left: 50%;
+        top:rem(500);
+        margin-left: rem(-298/2);
+        // margin: rem(470) auto 0 auto;
+        opacity: 0;
+    }
+
+    .rule-btn{
+        width: rem(97);
+        height: rem(30);
+        // margin: rem(27) auto 0 auto;
+        position: absolute;
+        left: 50%;
+        top:rem(574);
+        margin-left: rem(-97/2);
+    }
+}
+.mask{
+    @include mask();
+    display: none;
+
+    .rule-info{
+        width: rem(291);
+        height: rem(181);
+        margin: rem(120) auto 0 auto;
+        @include bg('./img/activity-180508-rule.png');
+        position: relative;
+    }
+}
+
+.toast{
+    z-index: $maskBaseZIndex + 10;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    background-color: rgba(0,0,0,.6);
+    transform: translate(-50%,-50%);
+    color: #fff;
+    padding: rem(5);
+    border-radius: rem(4);
+    font-size: rem(14);
+    display: none;
+}

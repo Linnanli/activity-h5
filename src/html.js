@@ -1,3 +1,6 @@
+/**
+ * 使用js生成html(暂废)
+ */
 let content = require('common/layout/index.ejs')
 let script = require('common/layout/script.ejs')
 let styles = require('common/layout/styles.ejs')

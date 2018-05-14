@@ -1,12 +1,13 @@
-const fs = require('fs');
-const path = require('path');
+var fs = require('fs');
+var path = require('path');
 
-const config = {
+var config = {
     multiPageDir:'page',
+    fundebugKey:'3213c4f5cfcfa6862e653ac4e2b2be46be3bfe316dee8df15776d2d6de6cafa5',
     build:{
         assetsRoot:path.resolve(__dirname,'../dist'),//生成资源根路径
         assetsSubDirectory:'static',//静态资源存放目录
-        assetsPublicPath:'/',
+        assetsPublicPath:'/dist/',
         //sourceMap
         devtool:'hidden-source-map'
     },
@@ -16,8 +17,8 @@ const config = {
         assetsPublicPath:'/',
         //sourceMap
         devtool:'eval-source-map',
-        
-        host:'localhost',
+        https:false,
+        host:'169.254.154.26',
         port:8089
     }
 };
