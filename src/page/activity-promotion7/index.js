@@ -1,10 +1,6 @@
 import 'common/styles/reset.scss';
 import './index.scss';
 
-import { getQueryString } from 'util'; 
-
-console.log(getQueryString('test'))
-
 let producList = {
     producGtgl: null,
     producMpdz: null,

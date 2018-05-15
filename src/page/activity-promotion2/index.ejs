@@ -12,7 +12,7 @@
     <% for(var i = 0;i<linkList.length;i++){ %>
         <link rel="stylesheet" href="<%=linkList[i]%>">
     <% } %>
-    <%= '<script>'+ htmlWebpackPlugin.options.flexible +'</script>' %>
+    <%= require('inline-script-loader!common/lib/flexible.js') %>
     <script type="text/javascript">
             window.global = { };
     </script>

@@ -30,11 +30,11 @@ var webpackDev = merge(webpackCommon,{
         new webpack.DefinePlugin({
             'process.env':env
         }),
-        // new FriendlyErrorsWebpackPlugin({
-        //     compilationSuccessInfo: {
-        //         messages: [`Your application is running here: http://${config.host}:${config.port}`],
-        //     }
-        // }),//优化提示信息
+        new FriendlyErrorsWebpackPlugin({
+            compilationSuccessInfo: {
+                messages: [`Your application is running here: http://${config.host}:${config.port}`],
+            }
+        }),//优化提示信息
         new webpack.HotModuleReplacementPlugin(),//热替换插件
         new webpack.NamedModulesPlugin()
     ]
