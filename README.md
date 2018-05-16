@@ -75,5 +75,4 @@ npm run start
 | ------------ | -------------- |
 |  npm run start |  开启开发环境 |
 |  npm run build |  生成生产环境文件,存放在dist目录中 |
-|  npm run build:test |  生成构建测试环境文件,存放在dist目录中 |
 |  npm run profile |  生成构建后生产环境文件的分析图,可以用来性能分析 |

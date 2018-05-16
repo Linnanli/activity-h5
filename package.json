@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "build": "set https=true&&node build/build.js",
-    "build:test": "set TEST_BUILD=true&&node build/build.js",
     "profile": "npm run build --profile --json > states.json",
     "start": "webpack-dev-server --progress --config build/webpack.dev.conf.js",
     "test": "echo \"Error: no test specified\" && exit 1"

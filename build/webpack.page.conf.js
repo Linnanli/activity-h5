@@ -3,7 +3,6 @@ const path = require('path')
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const vendorList = require('../lib/vendor')
-const inlineScript = require('../lib/inline-script')
 const config = require('../config');
 //生成入口文件配置
 let entryList = util.generateEntry({
@@ -11,7 +10,6 @@ let entryList = util.generateEntry({
     filename: 'index.js'
 });
 entryList.app = './src/main.js';
-// entryList = merge(entryList, vendorList);
 
 //生成HTML插件配置
 let HTMLPlugin = util.generateHTMLPlugin({
@@ -44,7 +42,7 @@ exports.getHTMLPlugin = function (env) {
     let HTMLPlugins = [];
     let isDev = env === 'development';
     HTMLPlugin.forEach((item, index) => {
-        Object.assign(item, inlineScript);
+        // Object.assign(item, inlineScript);
         item.NODE_ENV = env;//传入环境变量
         item.fundebugKey = config.fundebugKey;
         //模板根据不同环境区分不同请求头
