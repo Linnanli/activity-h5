@@ -1,5 +1,4 @@
 const fs = require('fs');
-const UglifyJS = require('uglify-es')
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = require('../config');
@@ -110,16 +109,6 @@ exports.generateHTMLPlugin = function ({ entryList = {}, filename, template }) {
     return HTMLPlugins;
 }
 
-exports.loadMinified = function (filePath, isUglifyJS) {
-  const code = fs.readFileSync(filePath, 'utf-8');
-  if (isUglifyJS) {
-    const result = UglifyJS.minify(code)
-    if (result.error) return ''
-    return result.code
-  }
-
-  return code;
-}
 
 exports.assetsPath = function (_path) {
     const assetsSubDirectory = process.env.NODE_ENV === 'production'
