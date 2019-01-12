@@ -1,0 +1,52 @@
+{
+    "code": 1000000,
+    "msg": "成功",
+    "data": [
+        {
+            "account": "13772445582",
+            "gmtCreate": "2018-11-22 14:17:14",
+            "inviteMoney": 1.37
+        },
+        {
+            "account": "13777489582",
+            "gmtCreate": "2018-11-22 13:54:04",
+            "inviteMoney": null
+        },{
+            "account": "13772445582",
+            "gmtCreate": "2018-11-22 14:17:14",
+            "inviteMoney": 1.37
+        },
+        {
+            "account": "13777489582",
+            "gmtCreate": "2018-11-22 13:54:04",
+            "inviteMoney": null
+        },{
+            "account": "13772445582",
+            "gmtCreate": "2018-11-22 14:17:14",
+            "inviteMoney": 1.37
+        },
+        {
+            "account": "13777489582",
+            "gmtCreate": "2018-11-22 13:54:04",
+            "inviteMoney": null
+        },{
+            "account": "13772445582",
+            "gmtCreate": "2018-11-22 14:17:14",
+            "inviteMoney": 1.37
+        },
+        {
+            "account": "13777489582",
+            "gmtCreate": "2018-11-22 13:54:04",
+            "inviteMoney": null
+        },{
+            "account": "13772445582",
+            "gmtCreate": "2018-11-22 14:17:14",
+            "inviteMoney": 1.37
+        },
+        {
+            "account": "13777489582",
+            "gmtCreate": "2018-11-22 13:54:04",
+            "inviteMoney": null
+        }
+    ]
+}

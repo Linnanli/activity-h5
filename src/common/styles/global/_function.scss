@@ -1,0 +1,7 @@
+//px转rem函数
+@function rem($px, $base-font-size: 75) {
+    @return ($px*2 / $base-font-size) + rem;
+}
+@function rem2($pt) {
+    @return ($pt / 20) + rem
+}

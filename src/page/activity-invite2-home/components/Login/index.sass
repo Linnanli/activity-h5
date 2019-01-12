@@ -1,0 +1,86 @@
+.login-mask
+    position: fixed
+    width: 100%
+    top: 0
+    bottom: 0
+    @include mask(rgba(0,0,0,.5), $maskBaseZIndex - 100)
+
+    .login-warp
+        $width: 291
+        $height: 304
+        font-size: 0
+        width: rem($width)
+        height: rem($height)
+        background-color: #fff
+        position: absolute
+        left: 50%
+        top: 50%
+        margin-left: rem(-$width/2)
+        margin-top: rem(-$height/2)
+        border-radius: rem(14)
+
+    .close-btn
+        width: rem(19)
+        height: rem(19)
+        @include bg('./img/activity-invite2-home-close.png')
+        position: absolute
+        right: rem(14)
+        top: rem(14)
+
+    .form-line
+        text-align: center
+
+        input
+            border: none
+            outline: none
+            background-color: #F0F1F4
+            border-radius: rem(7)
+            box-sizing: border-box
+            font-size: rem(15)
+            height: rem(45)
+            padding: rem(12) rem(18)
+            
+        button
+            border: none
+            background-color: #FFCA2F
+            color: #FF0000
+            text-align: center
+            outline: none
+            
+    .phone-input
+        width: rem(247)
+        height: rem(45)
+        margin-top: rem(57)
+
+    .check-code
+        width: rem(132)
+        margin-top: rem(14)
+
+    .check-code-btn
+        width: rem(106)
+        height: rem(45)
+        margin-left: rem(10)
+        border-radius: rem(7)
+        font-size: rem(14)
+
+        &.disable
+            filter: grayscale(100%)
+
+    .login-btn
+        width: rem(247)
+        height: rem(50)
+        border-radius: rem(25)
+        margin-top: rem(33)
+        font-size: rem(17)
+        font-weight: bold
+
+    .protocol
+        font-size: rem(12)
+        color: #424251
+        text-align: center
+        margin-top: rem(14)
+
+        .line-text
+            color: #0073FF
+        
+        

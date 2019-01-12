@@ -1,0 +1,10 @@
+/* iphone 8下 safari 浏览器，onpageshow失效，使用css来弥补 */
+// @media only screen and (min-width:375px){html{font-size: 37.5px!important}}
+// @media (-webkit-min-device-pixel-ratio:2){/* 兼容iphone6 */
+//     font-size: 120px!important;
+// }
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (-webkit-device-pixel-ratio: 2) {
+    html{
+        font-size: 37.5px!important;
+    }
+}

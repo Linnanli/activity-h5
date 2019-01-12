@@ -1,4 +1,6 @@
-module.exports = {
-    NODE_ENV:JSON.stringify('development'),
-    APP_HOST: JSON.stringify('http://116.62.134.207:8082')
-};
+const merge = require('webpack-merge');
+const prodEnv = require('./prod.env')
+
+module.exports = merge(prodEnv,{
+    NODE_ENV:JSON.stringify('development')
+});

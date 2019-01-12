@@ -1,4 +1,5 @@
 const fs = require('fs');
+// const UglifyJS = require('uglify-es')
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = require('../config');
@@ -109,6 +110,16 @@ exports.generateHTMLPlugin = function ({ entryList = {}, filename, template }) {
     return HTMLPlugins;
 }
 
+// exports.loadMinified = function (filePath, isUglifyJS) {
+//   const code = fs.readFileSync(filePath, 'utf-8');
+//   if (isUglifyJS) {
+//     const result = UglifyJS.minify(code)
+//     if (result.error) return ''
+//     return result.code
+//   }
+
+//   return code;
+// }
 
 exports.assetsPath = function (_path) {
     const assetsSubDirectory = process.env.NODE_ENV === 'production'
@@ -116,4 +127,24 @@ exports.assetsPath = function (_path) {
         : config.dev.assetsSubDirectory
 
     return path.posix.join(assetsSubDirectory, _path)
+}
+
+exports.fsStat = (filePath)=>{
+    return new Promise((resolve, reject) => {
+        fs.stat(filePath, (err, stats) => {
+            if (!err) {
+                resolve(stats);
+                return;
+            }
+            reject(err);
+        });
+    });
+}
+
+exports.addConfig = (defaultConf,userConf)=>{
+    for (let key in userConf) {
+        if (userConf[key] !== undefined){
+            defaultConf[key] = userConf[key];
+        }
+    }
 }

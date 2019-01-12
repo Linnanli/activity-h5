@@ -1,0 +1,25 @@
+/* ================ toast ============== */
+.dialog-toast{
+    background-color: rgba(0,0,0,.5);
+    width: rem2(160);
+    line-height: rem2(16);
+    box-sizing: border-box;
+    text-align: center;
+    color: #fff;
+    font-size: rem2(12);
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: rem2(-160/2);
+    padding:rem2(8) rem2(20);
+    border-radius: rem2(4);
+    opacity: 0;
+    transform: scale(.8);
+    transition: all ease .4s;
+    z-index: $maskBaseZIndex;
+}
+
+.dialog-toast.show{
+    opacity: 1;
+    transform: scale(1);
+}

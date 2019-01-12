@@ -1,0 +1,28 @@
+/* ================ loading ============== */
+.dialog-loading{
+    @include mask( rgba(255,255,255,0) );
+    display: none;
+    z-index: $maskBaseZIndex + 10;
+    position: fixed;
+    .rotate{
+        width: rem2(32);
+        height: rem2(32);
+        border: 2px solid gray;
+        border-bottom: 2px solid transparent;
+        border-radius: 50%;
+        position: absolute;
+        
+        left: 50%;
+        top: 50%; 
+        transform: translate(-50%,-50%);
+        animation: rotate .3s linear infinite;
+        @keyframes rotate {
+            from {
+                transform: translate(-50%,-50%) rotate(0);
+            }
+            to{
+                transform: translate(-50%,-50%) rotate(360deg);
+            }
+        }
+    }
+}

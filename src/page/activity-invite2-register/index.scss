@@ -1,0 +1,132 @@
+body,html{
+    height: 100%;
+    background-color: #fff;
+}
+.active-status-bar{
+    background-color:#FFEBCE;
+    color: #F04D32;
+    line-height: rem(20);
+    padding: rem(11) rem(16) rem(15) rem(16);
+    font-size: rem(13);
+}
+.container{
+    height: rem(667);
+    height: rem(267);
+    @include bg('./img/activity-invite2-register-bg.jpg');
+    margin: 0 auto;
+
+    .input-wrap{
+        width: rem(300);
+        margin: rem(304) auto 0 auto;
+    }
+    .form-input + .form-input{
+        margin-top: rem(10);
+    }
+
+    
+    .form-input{
+        position: relative;
+        width: 100%;
+        height: rem(50);
+        font-size: 0;
+
+        input{
+            border: none;
+            width: 100%;
+            height: 100%;
+            padding: 0 rem(16);
+            box-sizing: border-box;
+            font-size: rem(17);
+            border-radius: rem(7);
+            border: 1px solid #E3E3E3;
+            outline: none
+        }
+    }
+
+    .verify-input{
+        overflow: hidden;
+        
+        input{
+            padding-right: rem(110);
+        }
+    }
+
+    .verify-btn{
+        display: inline-block;
+        background-color: #EAEAEA;
+        width: rem(107);
+        height: rem(48);
+        position: absolute;
+        right: 0;
+        top: 0;
+        border: 1px solid #E3E3E3;
+
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .checkcode-input{
+        margin-top: rem(20);
+        
+        input{
+            padding-right: rem(105);
+            box-sizing: border-box;
+        }
+    }
+    .checkcode-btn{
+        display: inline-block;
+        height: rem(45);
+        color: #0073FF;
+        font-size: rem(15);
+        position: absolute;
+        right: rem(17);
+        top: rem(16);
+
+        &::before{
+            content: '';
+            display: block;
+            width: 1px;
+            height: rem(21); 
+            background-color:#E3E3E3;
+            position: absolute;
+            left: rem(-15);
+            top: rem(-4)
+        }
+
+        &.disable{
+            filter: grayscale(100%); 
+        }
+    }
+    /*================ 开始按钮 ==================*/
+    .start-btn{
+        display: block;
+        width: rem(327);
+        height: rem(82);
+        margin: 0 auto;
+        @include bg('./img/activity-invite2-register-btn.png');
+        text-align: center;
+        color: #fff;
+        font-size: rem(20);
+        margin-top: rem(28);
+        margin-left: rem(-10);
+
+        &.disabled{
+            filter: opacity(50%);
+        }
+    }
+    .button-text{
+        margin-top: rem(22);
+    }
+
+    .person-num{
+        font-size: rem(12);
+        text-align: center;
+        color: #ddd;
+
+        span{
+            color: rgba(red, .6)
+        }
+    }
+}

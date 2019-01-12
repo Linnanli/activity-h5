@@ -1,0 +1,95 @@
+body
+    background-color: #8e6ebd
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+
+.container
+    // width: rem(375)
+    width: 100%
+    height: rem(603)
+    @include bgWebp('./img/activity-invite2-home-bg.png')
+    position: relative
+
+    .prizes-btn
+        width: rem(83)
+        height: rem(37)
+        line-height: rem(37)
+        background-color: rgba(#000, .6)
+        position: absolute
+        right: 0
+        top: rem(9)
+        border-radius: rem(20) 0 0 rem(20)
+        border: rem(2) solid rgba(#fff, .74)
+        border-right: none
+        font-size: 0
+
+    .prizes-btn-arrow
+        width: rem(4)
+        height: rem(7)
+        display: inline-block
+        margin-left: rem(10)
+        vertical-align: middle
+        @include bg('./img/activity-invite2-home-arrow.png')
+
+    .prizes-btn-text
+        vertical-align: middle
+        display: inline-block
+        margin-left: rem(8)
+        font-size: rem(14)
+        color: #fff
+
+    .start-btn
+        width: rem(123)
+        height: rem(126)
+        @include bg('./img/activity-invite2-home-btn.png')
+        margin: rem(253) auto 0 auto
+        animation: startbtn 1s infinite linear
+
+        @keyframes startbtn
+            from
+                transform: scale(1)
+            to
+                transform: scale(.8)
+
+    /* ===================== 滚动栏 ======================= */
+    .scroll-bar
+        // height: rem(20)
+        width: rem(220)
+        position: absolute
+        top: rem(447)
+        left: 50%
+        margin-left: rem(-220/2)
+        display: flex
+        flex-direction: row
+        align-items: center
+
+    .scroll-icon
+        width: rem(18)
+        height: rem(17)
+        @include bg('./img/activity-invite2-home-icon.png')
+
+    .scroll-warp
+        flex-grow: 1
+        height: 20px
+        margin-left: rem(6)
+
+    .scroll-list
+        width: 100%
+        
+    .scroll-item
+        width: 100%
+        font-size: rem(12)
+        color: #FFFFFF
+        vertical-align: middle
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+
+    /* ===================== 规则 ======================= */
+    .rule-btn
+        width: rem(164)
+        height: rem(24)
+        @include bg('./img/activity-invite2-home-rules.png')
+        position: absolute
+        top: rem(516)
+        left: 50%
+        margin-left: rem(-164/2)

@@ -3,20 +3,27 @@ const path = require('path')
 const chalk = require('chalk')
 const rimraf = require('rimraf')
 const webpack = require('webpack')
-
+const merge = require('webpack-merge')
+const { addConfig } = require('./util')
 //设置全局环境变量
 const env = require('../config/prod.env');
 process.env.NODE_ENV = JSON.parse(env.NODE_ENV);
 
 const config = require('../config');
 const prodCfg = config.build;
-const webpackConfig = require('../build/webpack.pro.conf');
 
-const spinner = ora('生产文件构建中...').start();
-spinner.color = 'green';
 
-rimraf(path.join(prodCfg.assetsRoot, prodCfg.assetsSubDirectory), (err)=>{
-    if (err) throw err;
+module.exports = (dirName, userConfig = {}) => {
+    //设置配置
+    addConfig(prodCfg,userConfig);
+    //加载配置文件
+    let webpackConfig = null;
+    let webpackCommon = require('./webpack.common')(dirName);
+    let webpackProConf = require('../build/webpack.pro.conf');
+    webpackConfig = merge(webpackCommon, webpackProConf)
+    const spinner = ora('生产文件构建中...').start();
+    spinner.color = 'green';
+
     webpack(webpackConfig, (err, stats) => {
         spinner.stop()
         if (err) throw err
@@ -38,6 +45,7 @@ rimraf(path.join(prodCfg.assetsRoot, prodCfg.assetsSubDirectory), (err)=>{
             '  Tip: 生产文件存放在dist目录下.\n'
         ))
     })
-});
+    
+}
 
 

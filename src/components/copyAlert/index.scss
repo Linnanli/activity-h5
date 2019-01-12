@@ -1,0 +1,43 @@
+    /* ============================copy 成功弹窗 ===========================*/
+    .copy-alert-mask{
+        @include mask();
+    }
+    .copy-alert-box{
+        width: rem(290);
+        height: rem(279);
+        background-color: #fff;
+        border-radius: rem(6);
+        margin: rem(180) auto 0 auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: rem(-290/2);
+        margin-top: rem(-279/2);
+
+        .top-logo{
+            width: rem(162);
+            height: rem(113);
+            @include bg('./img/copy-alert-top-icon.png');
+            position: absolute;
+            left: 50%;
+            top: rem(-40);
+            margin-left: rem(-162/2);
+        }
+        .alert-info{
+            width: rem(214);
+            line-height: rem(24);
+            color: #333333;
+            font-size: rem(16);
+            text-align: center;
+            margin: rem(111) auto 0 auto;
+        }
+        .alert-btn{
+            width: rem(236);
+            height: rem(55);
+            @include bg('./img/copy-alert-confirm-btn.png');
+            position: absolute;
+            bottom: rem(38);
+            left: 50%;
+            margin-left: rem(-236/2);
+        }
+    }

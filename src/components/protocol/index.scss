@@ -1,0 +1,67 @@
+.register-protocol{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    // height: 100%;
+    bottom: 0;
+    z-index: $maskBaseZIndex + 10;
+    background-color: #fff;
+
+    .register-box{
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    .nav{
+        width: 100%;
+        height: rem(44);
+        background-color: #f7f7f8;
+        font-size: rem(20);
+        text-align: center;
+        line-height: rem(44);
+        color: #3d4145;
+        border-bottom: 1px solid #e7e7e7;
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        // z-index: 1;
+        .back-icon{
+            display: block;
+            position: absolute;
+            width: rem(30);
+            height: rem(30);
+            left: rem(6);
+            top: rem(6);
+            @include bg('./img/icon_close.png');
+        }
+    }
+
+    .register-container{
+        // flex-grow: 1;
+        overflow-y: auto;
+        font-size: rem(14);
+        padding: 0 rem(20);
+        box-sizing: border-box;
+        padding-top: rem(44);
+        // position: absolute;
+        height: 100%;
+        h2{
+            font-size: rem(18);
+            margin: rem(20) 0;
+            text-align: center;
+            font-weight: bold;
+        }
+        h3{
+            font-size: rem(16);
+            color: #5591ff;
+            margin: rem(5) 0;
+        }
+        p{
+            text-indent: rem(28);
+            line-height: 1.5;
+        }
+    }
+
+}

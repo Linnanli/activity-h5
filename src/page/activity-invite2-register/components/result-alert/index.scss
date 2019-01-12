@@ -1,0 +1,64 @@
+.preload-list{
+    opacity: 0;
+    height: 0;
+}
+
+.success{
+    @include bg('./img/activity-contact-invite-success-alert.png');
+}
+
+.faild{
+    @include bg('./img/activity-contact-invite-faild-alert.png');
+
+    .title{
+        color: #fff;
+        font-size: rem(21);
+        text-align: center;
+        margin-top: rem(162)
+    }
+
+    .prompt{
+        color: rgba(#fff,.7);
+        font-size: rem(15);
+        text-align: center;
+        margin-top: rem(13)
+    }
+}
+
+.result-alert-mask{
+    @include mask();
+    display: none;
+
+    .result-alert-box{
+        width: rem(285);
+        height: rem(360);
+        margin: rem(60) auto 0 auto;
+        position: relative;
+    }
+
+    .result-alert-btn{
+        width: rem(210);
+        height: rem(49);
+        background-color: #fff;
+        border-radius: rem(25);
+        color: #FFA627;
+        font-size: rem(16);
+        text-align: center;
+        line-height: rem(49);
+        position: absolute;
+        left: 50%;
+        margin-left: rem(-210/2);
+        bottom: rem(44);
+        box-shadow: 0 0 10px 1px rgba(#E05D16,.21);
+    }
+
+    .result-alert-close{
+        width: rem(34);
+        height: rem(34);
+        position: absolute;
+        left: 50%;
+        margin-left: rem(-34/2);
+        bottom: rem(-54);
+        @include bg('./img/activity-contact-invite-close-btn.png');
+    }
+}

@@ -1,0 +1,156 @@
+body
+    background-color: #F8F8F9
+
+.top-bar
+    width: rem(375)
+    height: rem(140)
+    background-color: #fff
+    display: flex
+    flex-direction: row
+    align-items: center
+    justify-content: space-between
+    margin-bottom: rem(10)
+    
+    .left-item
+        height: rem(80)
+        margin-left: rem(15)
+        display: flex
+        flex-direction: row
+
+    .left-icon
+        width: rem(80)
+        @include bg('./img/activity-invite2-prizes-icon.png')
+
+    .left-desciption
+        margin-left: rem(17)
+
+    .left-title
+        color: #424251
+        font-size: rem(15)
+        line-height: rem(21)
+        font-weight: bold
+
+    .left-amount
+        color: #FF5240
+        font-size: rem(27)
+        margin-top: rem(4)
+        line-height: rem(33)
+        font-weight: bold
+
+    .left-unit
+        color: #909298
+        font-size: rem(12)
+        line-height: rem(15)
+        margin-top: rem(7)
+
+    .start-btn
+        width: rem(77)
+        height: rem(32)
+        background: linear-gradient(to right, #FF4D40 ,#FFA112)
+        border-radius: rem(16)
+        border: none
+        font-size: rem(12)
+        color: #fff
+        text-align: center
+        outline: none
+        box-shadow: 0px 2px 8px 1px rgba(#ff5812, .6)
+        margin-right: rem(15)
+
+.container
+    background-color: #fff
+    position: relative
+
+    .invite-prompt
+        display: none
+        position: absolute
+        width: 100%
+        left: 0
+        top: rem(279)
+        text-align: center
+
+    .invite-prompt-icon
+        display: inline-block
+        width: rem(50)
+        height: rem(50)
+        @include bg('./img/activity-invite2-prizes-empty.png')
+
+    .invite-prompt-title
+        font-size: rem(15)
+        color: #909298
+        line-height: rem(21)
+        margin-top: rem(14)
+    
+    .invite-prompt-descript
+        font-size: rem(11)
+        color: #D3D4D5
+        line-height: rem(15)
+        margin-top: rem(3)
+
+    .invite-prompt-btn
+        width: rem(81)
+        height: rem(31)
+        font-size: rem(12)
+        color: #FF3718
+        border: 1px solid #FF3718
+        border-radius: rem(19)
+        margin-top: rem(18)
+        background-color: transparent
+        outline: none
+
+    &.empty
+        height: rem(553)
+
+        .invite-prompt
+            display: block
+
+    .title
+        color: #424251
+        font-size: rem(15)
+        text-align: center
+        margin-top: rem(30)
+        font-weight: bold
+        line-height: rem(21)
+
+    .invite-info
+        width: rem(328)
+        height: rem(90)
+        box-shadow: 0px 2px 16px 1px rgba(#000000, .06)
+        margin: rem(12) auto 0 auto
+        border-radius: rem(7)
+        display: flex
+        flex-direction: row
+        justify-content: space-around
+
+    .info-item
+        text-align: center
+        margin-top: rem(23)
+
+    .info-num
+        color: #424251
+        font-size: rem(23)
+        line-height: rem(28)
+        
+    .info-descrip
+        font-size: rem(11)
+        color: #424251
+        margin-top: rem(3)
+        line-height: rem(15)
+
+    /* ******** 表格 *************/
+    table
+        width: rem(328)
+        text-align: center
+        margin: rem(29) auto 0 auto
+
+        th
+            color: #909298
+            font-size: rem(12)
+            line-height: rem(17)
+
+        td
+            color: #424251
+            font-size: rem(12)
+            padding: rem(15) 0
+            line-height: rem(17)
+
+    

@@ -1,0 +1,45 @@
+.rules-alert-mask{
+    @include mask(rgba(0,0,0,.5));
+    
+    .rules-alert-box{
+        width: rem(285);
+        height: rem(360);
+        background-color: #fff;
+        border-radius: rem(8);
+        box-sizing: border-box;
+        padding: rem(23) rem(22) rem(22) rem(19);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: rem(-285/2);
+        margin-top: rem(-360/2);
+    }
+    .rules-alert-main{
+        overflow-y: auto;
+        height: 100%;
+    }
+    .rules-alert-title{
+        text-align: center;
+        color: #424251;
+        font-size: rem(17);
+        font-weight: bold;
+    }
+    .rules-alert-contain{
+        margin-top: rem(32);
+        font-size: rem(13);
+        color: #424251;
+    }
+    .rules-alert-text{
+        margin-bottom: rem(20);
+        line-height: rem(20);
+    }
+    .rules-alert-close{
+        width: rem(34);
+        height: rem(34);
+        @include bg('./img/activity-invite-alert-close-icon.png');
+        position: absolute;
+        left: 50%;
+        margin-left: rem(-34/2);
+        bottom: rem(-54);
+    }
+}

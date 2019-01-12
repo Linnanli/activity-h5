@@ -1,8 +1,8 @@
 # activity-h5
 
-这是一个推广h5和活动h5的项目,适合一些简单的h5应用
+这是一个推广h5和活动h5的项目,适合一些简单的h5 web
 
-## 项目架构
+## 目录结构
 
 ```
 ├─ build # 存放webpack配置文件
@@ -21,11 +21,6 @@
 |
 ├─ dist # 存放生产环境文件
 |
-├─ lib # 需要在webpack中读取到的运行环境依赖脚本
-|   └─ inline-script # 内嵌到html的js配置文件
-|       ├─ index.js # 配置文件入口
-|       └─ flexible.js # 移动端适配js文件
-|
 ├─ mock-server # 前端mock data文件
 |   ├─ index.js # mock server 路由文件
 |   ├─ util.js # mock server 的工具函数
@@ -36,6 +31,10 @@
 |   |   ├─ img # 图片资源
 |   |   ├─ layout # 公用模板
 |   |   └─ styles # 公用样式
+|   |
+|   ├─ components # 公用组件
+|   |   ├─ dialog # 对话框组件
+|   |   └─ slider # 滚动栏组件
 |   |
 |   ├─ page # 各个页面入口文件
 |   |   └─ [entry] # 每个entry代表一个页面(run start后将会自动生成为入口)
@@ -50,6 +49,7 @@
 |   └─ main.js # web的index.html入口的js文件
 |   
 ├─ .babelrc # babel 配置文件
+├─ .mate.js # 开发者的配置项
 ├─ .gitignore # git 忽略文件配置
 ├─ .postcssrc.js # postcss 配置文件
 └─  package.json # 项目信息配置文件
@@ -63,16 +63,48 @@
 npm install
 ```
 
-- 启动开发环境
+- 启动
 
 ```
 npm run start
+```
+
+- 提示一 :
+
+选择`development`启动开发环境
+
+选择`production`构建生产文件
+
+``` bash
+? 请选择构建项目类型 (Use arrow keys)
+> development
+  production
+```
+
+- 提示二:
+
+选择相应`开发者的配置项`
+
+``` bash
+? 请选择配置项 (Use arrow keys)
+> 张伟杰(test)
+  测试环境(test)
+  林峰(test)
+  生产环境api
+  生产环境api(test)
+
+```
+
+- 提示三(只有在构建生产文件的时候才需要选择):
+
+输入`src/page/`下的目录名称,构建相应的生产文件
+
+``` bash
+? 请输入需要构建的文件名称 
 ```
 
 ## npm scripts
 
 | 命令 | 功能 |
 | ------------ | -------------- |
-|  npm run start |  开启开发环境 |
-|  npm run build |  生成生产环境文件,存放在dist目录中 |
-|  npm run profile |  生成构建后生产环境文件的分析图,可以用来性能分析 |
+|  npm run start |  启动 |

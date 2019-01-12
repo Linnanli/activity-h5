@@ -4,6 +4,8 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// const CompressionWebpackPlugin = require('compression-webpack-plugin');
+
 const packageCfg = require('../package.json');
 const util = require('../build/util');
 
@@ -14,15 +16,10 @@ process.env.NODE_ENV = JSON.parse(env.NODE_ENV);
 const config = require('../config');
 const prodCfg = config.build;
 
-//加载配置文件
-const webpackCommon = require('./webpack.common');
-
-
-
-module.exports = merge(webpackCommon, {
+module.exports = {
     output: {
-        filename: util.assetsPath('js/[name].[chunkhash:5].js'),
-        chunkFilename: util.assetsPath('js/[name].[chunkhash:5].js')
+        filename: util.assetsPath('js/[name].js'),
+        chunkFilename: util.assetsPath('js/[name].js')
     },
     devtool: prodCfg.devtool,
     plugins: [
@@ -59,9 +56,15 @@ module.exports = merge(webpackCommon, {
             }
         }),
         new ExtractTextPlugin({
-            filename: util.assetsPath('css/[name].[contenthash:5].css'),
+            filename: util.assetsPath('css/[name].css'),
             allChunks: true
         }),
+        // new CompressionWebpackPlugin({
+        //     test:/\.(js|css)$/,
+        //     asset: '[path].gz[query]',
+        //     algorithm:'gzip',
+        //     threshold:0
+        // }),
         // new webpack.optimize.CommonsChunkPlugin({//提取框架/类库脚本
         //     name: 'vendor',
         //     minChunks: function (module, count) {
@@ -86,4 +89,4 @@ module.exports = merge(webpackCommon, {
             openAnalyzer: false
         })
     ]
-});
+}

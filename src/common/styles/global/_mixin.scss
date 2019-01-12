@@ -1,0 +1,63 @@
+//设置背景图片
+@mixin bg($path){
+    background-image: url($path);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+//设置支持webp背景图片
+@mixin bgWebp($path){
+    background-image: url($path);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+//遮罩样式
+@mixin mask($rgba:rgba(0,0,0,.5), $zIndex: $maskBaseZIndex){
+    position: fixed;
+    background-color: $rgba;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    z-index: $zIndex;
+}
+
+//1像素横线
+@mixin line($width,$height,$bgColor){
+  width: $width;
+  height: $height;
+  background-color: $bgColor;
+  @media only screen and (-webkit-min-device-pixel-ratio: 3){
+    -webkit-transform: scaleY(.33);
+    transform: scaleY(.33);
+  }
+  @media only screen and (-webkit-min-device-pixel-ratio: 2){
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+  }
+}
+//1像素竖线
+@mixin columnLine($width,$height,$bgColor){
+  width: $width;
+  height: $height;
+  background-color: $bgColor;
+  @media only screen and (-webkit-min-device-pixel-ratio: 3){
+    -webkit-transform: scaleX(.33);
+    transform: scaleX(.33);
+  }
+  @media only screen and (-webkit-min-device-pixel-ratio: 2){
+    -webkit-transform: scaleX(.5);
+    transform: scaleX(.5);
+  }
+}
+
+//1像素横线
+$ratio: 0;
+@mixin media-query(){
+  @media only screen and (-webkit-min-device-pixel-ratio: 3){
+    @content;
+  }
+  @media only screen and (-webkit-min-device-pixel-ratio: 2){
+    @content;
+  }
+}

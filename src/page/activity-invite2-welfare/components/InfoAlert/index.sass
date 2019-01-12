@@ -1,0 +1,43 @@
+.info-alert-mask
+    @include mask(rgba(0,0,0,.5), $maskBaseZIndex - 100)
+
+    .info-alert-box
+        width: rem(270)
+        height: rem(177)
+        background-color: #fff
+        border-radius: rem(12)
+        position: absolute
+        left: 50%
+        top: 50%
+        margin-left: rem(-270/2)
+        margin-top: rem(-177/2)
+
+    .info-alert-title
+        text-align: center
+        color: #424251
+        font-size: rem(17)
+        line-height: rem(24)
+        margin-top: rem(20)
+        font-weight: bold
+
+    .info-alert-prompt
+        width: rem(240)
+        margin: 0 auto
+        font-size: rem(13)
+        color: #424251
+        line-height: rem(16)
+        text-align: center
+        margin-top: rem(20)
+
+    .info-alert-line
+        margin-top: rem(21)
+        @include line(100%, 1px, #E7E7E7)
+
+    .info-alert-btn
+        height: rem(43)
+        line-height: rem(43)
+        text-align: center
+        color: #007AFF
+        font-size: rem(17)
+        
+

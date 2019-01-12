@@ -17,4 +17,10 @@ module.exports = function(app){
         let json = util.getJsonFile('./queryBorrowingScroll.json');
         res.json(Mock.mock(json));
     });
+
+    //
+    app.post('/s5/RedPacketQueryController/queryHeadReward1', function (rep, res){
+        let json = util.getJsonFile('./queryHeadReward.json');
+        res.json(json);
+    })
 }

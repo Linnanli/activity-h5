@@ -1,0 +1,22 @@
+.alert-box{
+    width: rem(180);
+    height: rem(83);
+    position: absolute;
+    left: 50%;
+    top: rem(275);
+    transform: translateX(-50%);
+    background-color: rgba( #000000,.8);
+    border-radius: rem(4);
+    text-align: center;
+
+    .alert-title{
+        color: #fff;
+        font-size: rem(17);
+        margin-top: rem(21);
+    }
+    .alert-info{
+        color: #fff;
+        margin-top: rem(15);
+        font-size: rem(12);
+    }
+}
